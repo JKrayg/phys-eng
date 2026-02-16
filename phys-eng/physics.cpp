@@ -1,9 +1,9 @@
 // classical equations
 
 #include "vector3.h"
-#include "math.h"
+#include "physics.h"
 
-Vector3 Math::centripetal_acceleration(
+Vector3 Physics::centripetal_acceleration(
 	const Vector3& velocity,
 	const Vector3& obj_pos,
 	const Vector3& center_pos) const {

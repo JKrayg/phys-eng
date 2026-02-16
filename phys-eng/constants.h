@@ -8,4 +8,5 @@ namespace Constants {
 	constexpr double EARTH_ORBIT_SUN_VEL = 29780;
 	constexpr double EARTH_DIST_SUN = 1.496e11;
 	constexpr double SPEED_O_LIGHT = 299792458.0;
+	constexpr double TIME_STEP = 1.0 / 60.0;
 }

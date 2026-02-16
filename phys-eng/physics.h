@@ -1,9 +1,10 @@
 #pragma once
 
 #include "constants.h"
+#include "rigid_body.h"
 #include "vector3.h"
 
-struct Math {
+struct Physics {
 
 	Vector3 force(const double& mass, const Vector3& acceleration) const {
 		return acceleration * mass;
@@ -25,6 +26,13 @@ struct Math {
 			vec.y * vec.y +
 			vec.z * vec.z
 		);
+	}
+
+	void update_position(RigidBody& object) {
+		double t = Constants::TIME_STEP;
+		object.position = object.position +
+			object.velocity * t +
+			object.acceleration * (t * t) * 0.5;
 	}
 
 };

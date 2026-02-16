@@ -4,13 +4,13 @@
 
 class Sphere : public Shape {
 public:
-	Sphere() {
 
-	}
+	double radius;
+	Sphere(
+		std::string const shape_type = "Sphere",
+		double radius = 1.0) : Shape(shape_type), radius(radius) {}
 
-	double volume() {
-
-	}
+	double volume() {}
 
 
 };

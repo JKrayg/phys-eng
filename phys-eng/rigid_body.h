@@ -21,7 +21,7 @@ struct RigidBody : public Entity {
 		Vector3 velocity = Vector3(0, 0, 0),
 		Vector3 acceleration = Vector3(0, 0, 0),
 		Vector3 net_force = Vector3(0, 0, 0),
-		Quaternion orientation = (0, 0, 0, 0),
+		Quaternion orientation = (1, 0, 0, 0),
 		Vector3 angular_velocity = Vector3(0, 0, 0))
 		: shape(std::move(shape)),
 		Entity(name, mass, position,
@@ -29,5 +29,5 @@ struct RigidBody : public Entity {
 		net_force, orientation,
 		angular_velocity) {}
 
-	std::string to_string();
+	std::string to_string() const;
 };
