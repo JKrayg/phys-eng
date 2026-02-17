@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{07eeb8b7-4dbc-4af5-a183-c41e4beb309a}</ProjectGuid>
-    <RootNamespace>Classicalphysics</RootNamespace>
+    <ProjectGuid>{35e0c7c6-e45b-4078-a197-19cd4806ec4e}</ProjectGuid>
+    <RootNamespace>testrender</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>phys-eng</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -124,32 +123,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="physics.h" />
-    <ClInclude Include="constants.h" />
-    <ClInclude Include="entity.h" />
-    <ClInclude Include="mesh.h" />
-    <ClInclude Include="quaternion.h" />
-    <ClInclude Include="render_object.h" />
-    <ClInclude Include="rigid_body.h" />
-    <ClInclude Include="shader.h" />
-    <ClInclude Include="shape.h" />
-    <ClInclude Include="sphere.h" />
-    <ClInclude Include="time.h" />
-    <ClInclude Include="vector3.h" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="physics.cpp" />
-    <ClCompile Include="entity.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="mesh.cpp" />
-    <ClCompile Include="quaternion.cpp" />
-    <ClCompile Include="render_object.cpp" />
-    <ClCompile Include="rigid_body.cpp" />
-    <ClCompile Include="shader.cpp" />
-    <ClCompile Include="shape.cpp" />
-    <ClCompile Include="sphere.cpp" />
-    <ClCompile Include="time.cpp" />
-    <ClCompile Include="vector3.cpp" />
+    <ClInclude Include="linmath.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

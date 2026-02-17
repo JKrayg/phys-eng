@@ -1,4 +1,3 @@
-
 #include "entity.h"
 
 std::string Entity::to_string() const {

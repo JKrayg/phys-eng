@@ -1,4 +1,5 @@
 
+#include <string>
 #include "vector3.h"
 
 Vector3 Vector3::cross(const Vector3& other) const {

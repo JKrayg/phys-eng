@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include\bodies">
+      <UniqueIdentifier>{48b77012-db7e-4acb-a88e-2fdc8b353046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\constants">
+      <UniqueIdentifier>{f9d4ce56-a8f8-4d53-89e2-52525c10cc88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\data_types">
+      <UniqueIdentifier>{74c18e28-b541-4e5c-9145-2c9ddc02dbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\physics">
+      <UniqueIdentifier>{cb8e3c17-4b0b-498b-9c75-125b504764f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\rendering">
+      <UniqueIdentifier>{140d73c3-e907-4f46-9308-97946ef50c40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\shapes">
+      <UniqueIdentifier>{b1031e14-927a-4244-a2e3-ada084df6255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\time">
+      <UniqueIdentifier>{61f74b2d-1dfc-4c1d-8032-4d07c79fdba4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\bodies">
+      <UniqueIdentifier>{4ebda163-588e-4080-9faa-aa35877b50c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\data_types">
+      <UniqueIdentifier>{5fc4c885-09a5-4755-976e-63a7693bd63c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\physics">
+      <UniqueIdentifier>{67ab953c-4cf7-4060-85fc-d3df417f4463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rendering">
+      <UniqueIdentifier>{a73e64f6-9e3c-49b0-a8fd-6e87717195ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\shapes">
+      <UniqueIdentifier>{209629da-a388-4378-bf76-d2f00b29d6a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\time">
+      <UniqueIdentifier>{0d799a66-7ecc-49ac-87ef-3218aec7c5d9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="entity.h">
+      <Filter>include\bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="rigid_body.h">
+      <Filter>include\bodies</Filter>
+    </ClInclude>
+    <ClInclude Include="constants.h">
+      <Filter>include\constants</Filter>
+    </ClInclude>
+    <ClInclude Include="quaternion.h">
+      <Filter>include\data_types</Filter>
+    </ClInclude>
+    <ClInclude Include="vector3.h">
+      <Filter>include\data_types</Filter>
+    </ClInclude>
+    <ClInclude Include="time.h">
+      <Filter>include\time</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>include\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere.h">
+      <Filter>include\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="render_object.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>include\rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="phys.h">
+      <Filter>include\physics</Filter>
+    </ClInclude>
+    <ClInclude Include="linmath.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="engine_lib.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="entity.cpp">
+      <Filter>src\bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="rigid_body.cpp">
+      <Filter>src\bodies</Filter>
+    </ClCompile>
+    <ClCompile Include="quaternion.cpp">
+      <Filter>src\data_types</Filter>
+    </ClCompile>
+    <ClCompile Include="vector3.cpp">
+      <Filter>src\data_types</Filter>
+    </ClCompile>
+    <ClCompile Include="time.cpp">
+      <Filter>src\time</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>src\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere.cpp">
+      <Filter>src\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="render_object.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>src\rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="phys.cpp">
+      <Filter>src\physics</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

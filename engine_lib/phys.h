@@ -4,7 +4,7 @@
 #include "rigid_body.h"
 #include "vector3.h"
 
-struct Physics {
+struct Phys {
 
 	Vector3 force(const double& mass, const Vector3& acceleration) const {
 		return acceleration * mass;
