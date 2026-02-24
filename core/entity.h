@@ -1,3 +1,7 @@
 #pragma once
+#include "types.h"
 
-class Entity {};
+class Entity {
+
+	EntityID id;
+};

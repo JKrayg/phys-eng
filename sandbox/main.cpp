@@ -5,12 +5,14 @@
 #include <chrono>
 #include <thread>
 #include <string>
+#include <array>
 #include "../physics/phys.h"
-#include "../math/constants.h"
 #include "../physics/rigid_body.h"
-#include "../math/vector3.h"
-#include "../rendering/shader.h"
 #include "../physics/shape.h"
+#include "../math/constants.h"
+#include "../math/vector3.h"
+#include "../math/matrix3.h"
+#include "../rendering/shader.h"
 #include "../rendering/mesh.h"
 #include "../core/time.h"
 
@@ -35,7 +37,7 @@ int main(void) {
 
     Time t = Time();
 
-    bool running = true;
+    bool running = false;
 
     while (running) {
 
@@ -56,5 +58,20 @@ int main(void) {
 
 
     }
+
+    // --------------------------------------------------------------
+
+
+    std::array<double, 9> arr1 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    std::array<double, 9> arr2 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+
+    Vector3 vec1 = Vector3(1, 1, 1);
+    Matrix3 m1 = Matrix3(arr1);
+    Matrix3 m2 = Matrix3(arr2);
+
+    Vector3 vmul = m1 * vec1;
+    Matrix3 mmul = m1 * m2;
+
+    std::cout << mmul.to_string() << std::endl;
     return 0;
 };

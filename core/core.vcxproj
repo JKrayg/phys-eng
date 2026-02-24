@@ -140,6 +140,7 @@
     <ClInclude Include="linmath.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="time.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core.cpp" />

@@ -7,8 +7,7 @@ struct Vector3 {
     double x, y, z;
     
     Vector3(double pos_x = 0, double pos_y = 0, double pos_z = 0)
-        : x(pos_x), y(pos_y), z(pos_z) {
-    }
+        : x(pos_x), y(pos_y), z(pos_z) {}
 
     Vector3 cross(const Vector3& other) const;
     Vector3 inverted() const;

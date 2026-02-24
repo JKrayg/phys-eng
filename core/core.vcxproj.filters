@@ -36,6 +36,9 @@
     <ClInclude Include="linmath.h">
       <Filter>include</Filter>
     </ClInclude>
+    <ClInclude Include="types.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="core.cpp">
