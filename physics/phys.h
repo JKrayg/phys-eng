@@ -1,8 +1,8 @@
 #pragma once
 
-#include "constants.h"
+#include "../math/constants.h"
+#include "../math/vector3.h"
 #include "rigid_body.h"
-#include "vector3.h"
 
 struct Phys {
 

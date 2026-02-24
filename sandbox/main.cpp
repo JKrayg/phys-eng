@@ -5,14 +5,14 @@
 #include <chrono>
 #include <thread>
 #include <string>
-#include "../engine_lib/phys.h"
-#include "../engine_lib/constants.h"
-#include "../engine_lib/rigid_body.h"
-#include "../engine_lib/vector3.h"
-#include "../engine_lib/shader.h"
-#include "../engine_lib/shape.h"
-#include "../engine_lib/mesh.h"
-#include "../engine_lib/time.h"
+#include "../physics/phys.h"
+#include "../math/constants.h"
+#include "../physics/rigid_body.h"
+#include "../math/vector3.h"
+#include "../rendering/shader.h"
+#include "../physics/shape.h"
+#include "../rendering/mesh.h"
+#include "../core/time.h"
 
 int main(void) {
     Phys math;

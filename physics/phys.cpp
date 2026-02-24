@@ -1,6 +1,6 @@
 // classical equations
 
-#include "vector3.h"
+#include "../math/vector3.h"
 #include "phys.h"
 
 Vector3 Phys::centripetal_acceleration(

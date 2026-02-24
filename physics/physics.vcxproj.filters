@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="include\core">
+      <UniqueIdentifier>{4fb1fe5f-8b99-444f-b7ed-f9bdebf69354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\core">
+      <UniqueIdentifier>{8c90bf08-8991-4828-8954-2803d3280684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\dynamics">
+      <UniqueIdentifier>{caa63efa-e0f4-498d-b9fa-38afe0d2a1b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\dynamics">
+      <UniqueIdentifier>{4bddc6bc-7d90-4850-b0e5-bb3f61be72d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\collision">
+      <UniqueIdentifier>{ef2466c5-77df-4a99-a0e2-8217e77f2049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\collision\shapes">
+      <UniqueIdentifier>{89d40d5b-9824-4138-9bbf-eb93a99a219b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\collision">
+      <UniqueIdentifier>{3ee869b2-5ad8-42f1-a628-f43a7d96ea9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include\collision\shapes">
+      <UniqueIdentifier>{1c3a0247-b184-4909-bf55-2fb0e9118b8b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="phys.h">
+      <Filter>include\core</Filter>
+    </ClInclude>
+    <ClInclude Include="rigid_body.h">
+      <Filter>include\dynamics</Filter>
+    </ClInclude>
+    <ClInclude Include="shape.h">
+      <Filter>include\collision\shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="sphere.h">
+      <Filter>include\collision\shapes</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="physics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="phys.cpp">
+      <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="rigid_body.cpp">
+      <Filter>src\dynamics</Filter>
+    </ClCompile>
+    <ClCompile Include="shape.cpp">
+      <Filter>src\collision\shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="sphere.cpp">
+      <Filter>src\collision\shapes</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
