@@ -10,7 +10,7 @@ struct Matrix3 {
 public:
 	std::array<double, 9> matrix;
 
-	Matrix3(std::array<double, 9>& m) : matrix(m){}
+	Matrix3(std::array<double, 9>& m) : matrix(m) {};
 
 	std::string to_string();
 
@@ -19,5 +19,6 @@ public:
 	Matrix3 operator/(const double s) const;
 	Matrix3 transpose() const;
 	Matrix3 inverse() const;
+	Vector3 solve(const Vector3& vec) const;
 	double determinant() const;
 };

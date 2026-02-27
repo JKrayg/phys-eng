@@ -3,6 +3,8 @@
 #include <string>
 #include <cmath>
 
+class Matrix3;
+
 struct Vector3 {
     double x, y, z;
     
@@ -15,6 +17,7 @@ struct Vector3 {
     Vector3& cross_assign(const Vector3& other);
     Vector3& invert_assign();
     Vector3& normalize_assign();
+    Matrix3 skew() const;
     double dot(const Vector3& vec) const;
     double euc_distance(Vector3& vec) const;
     double length() const;
@@ -31,6 +34,8 @@ struct Vector3 {
     Vector3 operator*(double scalar) const {
         return Vector3(x * scalar, y * scalar, z * scalar);
     }
+
+    Matrix3 operator*(const Vector3& vec) const;
 
     Vector3 operator/(double scalar) const {
         return Vector3(x / scalar, y / scalar, z / scalar);

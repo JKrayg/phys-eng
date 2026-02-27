@@ -1,6 +1,18 @@
 
 #include <string>
+#include <array>
 #include "vector3.h"
+#include "matrix3.h"
+
+Matrix3 Vector3::operator*(const Vector3& vec) const {
+    std::array<double, 9> m = {
+        x * vec.x, x * vec.y, x * vec.z,
+        y * vec.x, y * vec.y, y * vec.z,
+        z * vec.x, z * vec.y, z * vec.z
+    };
+
+    return Matrix3(m);
+}
 
 Vector3 Vector3::cross(const Vector3& other) const {
     return Vector3(
@@ -48,6 +60,17 @@ Vector3& Vector3::normalize_assign() {
     return *this;
 }
 
+Matrix3 Vector3::skew() const
+{
+    std::array<double, 9> m = {
+        0, -z, y,
+        z, 0, -x,
+        -y, x, 0
+    };
+
+    return Matrix3(m);
+}
+
 double Vector3::dot(const Vector3& vec) const {
     return x * vec.x + y * vec.y + z * vec.z;
 }
@@ -64,6 +87,6 @@ double Vector3::length() const {
 
 std::string Vector3::to_string() const {
     return "[" + std::to_string(x) +
-        ", " + std::to_string(y) +
-        ", " + std::to_string(z) + "]";
+        "\n" + std::to_string(y) +
+        "\n" + std::to_string(z) + "]";
 }

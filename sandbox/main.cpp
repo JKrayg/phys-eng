@@ -65,18 +65,30 @@ int main(void) {
     std::array<double, 9> arr1 = {2, 0, 0, 0, 3, 0, 0, 0, 4};
     std::array<double, 9> arr2 = {4, 7, 2, 3, 6, 1, 2, 5, 3};
 
-    Vector3 vec1 = Vector3(1, 1, 1);
+    Vector3 vec1 = Vector3(8, 1, 3);
+    Vector3 vec2 = Vector3(1, 2, 3);
     Matrix3 m1 = Matrix3(arr1);
     Matrix3 m2 = Matrix3(arr2);
 
-    Vector3 vmul = m1 * vec1;
+    Vector3 vmmul = m1 * vec1;
     Matrix3 mmul = m1 * m2;
+    Matrix3 vvmul = vec1 * vec2;
+    Matrix3 skew = vec1.skew();
     Matrix3 tpose = mmul.transpose();
     double det = m1.determinant();
+
+    Vector3 solv = m1.solve(vec1);
 
     Matrix3 inv = m2.inverse();
 
 
-    std::cout << mmul.to_string() << "\n" + tpose.to_string() << "\n" << det << "\n" << inv.to_string() << std::endl;
+    std::cout << mmul.to_string() << "\n\n"
+        << tpose.to_string() << "\n\n"
+        << det << "\n\n" << inv.to_string()
+        << "\n\n" << (m2 * inv).to_string()
+        << "\n\n" << vvmul.to_string() 
+        << "\n\n" << skew.to_string() 
+        << "\n\n" << solv.to_string() << std::endl;
+
     return 0;
 };

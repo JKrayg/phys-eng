@@ -52,7 +52,7 @@ Matrix3 Matrix3::transpose() const {
 
 Matrix3 Matrix3::inverse() const {
 	std::array<double, 9> inv = {
-		(matrix[4] * matrix[8] - matrix[5] * matrix[7]) * (((0 + 0) %2 == 0) ? 1 : -1),
+		(matrix[4] * matrix[8] - matrix[5] * matrix[7]) * (((0 + 0) % 2 == 0) ? 1 : -1),
 		(matrix[3] * matrix[8] - matrix[5] * matrix[6]) * (((0 + 1) % 2 == 0) ? 1 : -1),
 		(matrix[3] * matrix[7] - matrix[4] * matrix[6]) * (((0 + 2) % 2 == 0) ? 1 : -1),
 		(matrix[1] * matrix[8] - matrix[2] * matrix[7]) * (((1 + 0) % 2 == 0) ? 1 : -1),
@@ -68,6 +68,28 @@ Matrix3 Matrix3::inverse() const {
 	return m.transpose() / this->determinant();
 }
 
+Vector3 Matrix3::solve(const Vector3& vec) const
+{
+	double det = this->determinant();
+
+	if (std::abs(det) < 1e-8) {
+		return Vector3(0, 0, 0);
+	}
+	else {
+		return Vector3(
+			((matrix[4] * matrix[8] - matrix[5] * matrix[7]) * vec.x +
+				(matrix[2] * matrix[7] - matrix[1] * matrix[8]) * vec.y +
+				(matrix[1] * matrix[5] - matrix[2] * matrix[4]) * vec.z) / det,
+			((matrix[5] * matrix[6] - matrix[3] * matrix[8]) * vec.x +
+				(matrix[0] * matrix[8] - matrix[2] * matrix[6]) * vec.y +
+				(matrix[2] * matrix[3] - matrix[0] * matrix[5]) * vec.z) / det,
+			((matrix[3] * matrix[7] - matrix[4] * matrix[6]) * vec.x +
+				(matrix[1] * matrix[6] - matrix[0] * matrix[7]) * vec.y +
+				(matrix[0] * matrix[4] - matrix[1] * matrix[3]) * vec.z) / det
+		);
+	}
+}
+
 double Matrix3::determinant() const {
 	return matrix[0] * (matrix[4] * matrix[8] - matrix[5] * matrix[7]) -
 		matrix[1] * (matrix[3] * matrix[8] - matrix[5] * matrix[6]) +
@@ -78,8 +100,8 @@ double Matrix3::determinant() const {
 
 std::string Matrix3::to_string() {
 	return "[" + std::to_string(matrix[0]) + ", " + std::to_string(matrix[1]) + ", " + 
-		std::to_string(matrix[2]) + ", " + std::to_string(matrix[3]) + ", " + 
-		std::to_string(matrix[4]) + ", " + std::to_string(matrix[5]) + ", " + 
+		std::to_string(matrix[2]) + "\n" + std::to_string(matrix[3]) + ", " + 
+		std::to_string(matrix[4]) + ", " + std::to_string(matrix[5]) + "\n" + 
 		std::to_string(matrix[6]) + ", " + std::to_string(matrix[7]) + ", " + 
 		std::to_string(matrix[8]) + "]";
 }
