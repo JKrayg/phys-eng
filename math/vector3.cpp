@@ -3,6 +3,7 @@
 #include <array>
 #include "vector3.h"
 #include "matrix3.h"
+#include "constants.h"
 
 Matrix3 Vector3::operator*(const Vector3& vec) const {
     std::array<double, 9> m = {
@@ -12,6 +13,10 @@ Matrix3 Vector3::operator*(const Vector3& vec) const {
     };
 
     return Matrix3(m);
+}
+
+Vector3 Vector3::zeros() const {
+    return Vector3(0, 0, 0);
 }
 
 Vector3 Vector3::cross(const Vector3& other) const {
@@ -29,6 +34,16 @@ Vector3 Vector3::inverted() const {
 Vector3 Vector3::normalize() const {
     double len = length();
     return Vector3(x/len, y/len, z/len);
+}
+
+Vector3 Vector3::project_onto(const Vector3& vec) const {
+    double len = vec.len_sqrd();
+    double proj = this->dot(vec) / len;
+    return vec * proj;
+}
+
+Vector3 Vector3::reflect(const Vector3& vec) const {
+    return *this - vec * (2 * this->dot(vec));
 }
 
 Vector3& Vector3::cross_assign(const Vector3& other) {
@@ -60,8 +75,19 @@ Vector3& Vector3::normalize_assign() {
     return *this;
 }
 
-Matrix3 Vector3::skew() const
-{
+Vector3& Vector3::clamp_length(const double max_length) {
+    double lensq = this->len_sqrd();
+    if (lensq > max_length * max_length) {
+        if (!this->is_near_zero()) {
+            *this = *this * (max_length / std::sqrt(lensq));
+        }
+    }
+
+    return *this;
+   
+}
+
+Matrix3 Vector3::skew() const {
     std::array<double, 9> m = {
         0, -z, y,
         z, 0, -x,
@@ -81,8 +107,16 @@ double Vector3::euc_distance(Vector3& vec) const {
     return diff.length();
 }
 
+double Vector3::len_sqrd() const {
+    return x * x + y * y + z * z;
+}
+
 double Vector3::length() const {
-    return std::sqrt(x*x + y*y + z*z);
+    return std::sqrt(x * x + y * y + z * z);
+}
+
+bool Vector3::is_near_zero() const {
+    return len_sqrd() < Constants::EPSILON;
 }
 
 std::string Vector3::to_string() const {

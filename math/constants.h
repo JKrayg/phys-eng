@@ -1,5 +1,8 @@
 #pragma once
 
+#include <array>
+#include "matrix3.h"
+
 
 namespace Constants {
 	constexpr double NEWTON_G = 6.67430e-11;
@@ -9,4 +12,5 @@ namespace Constants {
 	constexpr double EARTH_DIST_SUN = 1.496e11;
 	constexpr double SPEED_O_LIGHT = 299792458.0;
 	constexpr double TIME_STEP = 1.0 / 60.0;
+	constexpr double EPSILON = 1e-8;
 }

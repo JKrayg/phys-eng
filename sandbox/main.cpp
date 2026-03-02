@@ -15,6 +15,7 @@
 #include "../rendering/shader.h"
 #include "../rendering/mesh.h"
 #include "../core/time.h"
+#include <random>
 
 int main(void) {
     Phys math;
@@ -62,13 +63,32 @@ int main(void) {
     // --------------------------------------------------------------
 
 
-    std::array<double, 9> arr1 = {2, 0, 0, 0, 3, 0, 0, 0, 4};
-    std::array<double, 9> arr2 = {4, 7, 2, 3, 6, 1, 2, 5, 3};
+    std::array<double, 9> arr1 = {1, 2, 3, 2, 5, 6, 3, 6, 9};
+    std::array<double, 9> arr2 = {1, 4, 7, 2, 1, 8, 3, 6, 1};
 
     Vector3 vec1 = Vector3(8, 1, 3);
     Vector3 vec2 = Vector3(1, 2, 3);
-    Matrix3 m1 = Matrix3(arr1);
-    Matrix3 m2 = Matrix3(arr2);
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dis(-1000000.0, 1000000.0);
+
+    std::array<double, 9> randm1 = {
+        dis(gen), dis(gen), dis(gen),
+        dis(gen), dis(gen), dis(gen),
+        dis(gen), dis(gen), dis(gen)
+    };
+
+    std::array<double, 9> randm2 = {
+        dis(gen), dis(gen), dis(gen),
+        dis(gen), dis(gen), dis(gen),
+        dis(gen), dis(gen), dis(gen)
+    };
+
+    std::array<double, 9> we = { 2, 0, 0, 0, 3, 0, 0, 0, 4 };
+
+    Matrix3 m1 = Matrix3(randm1);
+    Matrix3 m2 = Matrix3(randm2);
 
     Vector3 vmmul = m1 * vec1;
     Matrix3 mmul = m1 * m2;
@@ -78,17 +98,41 @@ int main(void) {
     double det = m1.determinant();
 
     Vector3 solv = m1.solve(vec1);
+    Vector3 proj = vec1.project_onto(vec2);
+    Vector3 refl = vec1.reflect(vec2.normalize());
 
     Matrix3 inv = m2.inverse();
+    Matrix3 id = m2.identity();
+    Matrix3 zero = m2.zeros();
+    Matrix3 dia = m2.diagonal(2, 3, 4);
+
+    Matrix3 e = Matrix3().diagonal(64, 64, 64);
+        
 
 
-    std::cout << mmul.to_string() << "\n\n"
-        << tpose.to_string() << "\n\n"
-        << det << "\n\n" << inv.to_string()
+
+    std::cout 
+        << m1.to_string()
+        << "\n\n" << m2.to_string()
+        << "\n\n" << mmul.to_string()
+        << "\n\n" << tpose.to_string() 
+        << "\n\n" << det 
+        << "\n\n" << inv.to_string()
         << "\n\n" << (m2 * inv).to_string()
-        << "\n\n" << vvmul.to_string() 
+        //<< "\n\n" << vvmul.to_string() 
         << "\n\n" << skew.to_string() 
-        << "\n\n" << solv.to_string() << std::endl;
+        /*<< "\n\n" << solv.to_string() 
+        << "\n\n" << proj.to_string() 
+        << "\n\n" << refl.to_string() */
+        << "\n\n" << vec1.clamp_length(0.5).to_string() 
+        << "\n\n" << id.to_string() 
+        << "\n\n" << zero.to_string() 
+        << "\n\n" << e.to_string() 
+        << "\n\n" << m1.is_invertible() 
+        << "\n\n" << m2.is_invertible() 
+        << "\n\n" << m1.is_symmetric() 
+        << "\n\n" << m2.is_symmetric() 
+        << "\n\n" << m2.trace() << std::endl;
 
     return 0;
 };

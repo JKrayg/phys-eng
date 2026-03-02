@@ -14,13 +14,20 @@ struct Vector3 {
     Vector3 cross(const Vector3& other) const;
     Vector3 inverted() const;
     Vector3 normalize() const;
+    Vector3 project_onto(const Vector3& vec) const;
+    Vector3 reflect(const Vector3& vec) const;
+    Vector3 zeros() const;
+    Matrix3 skew() const;
     Vector3& cross_assign(const Vector3& other);
     Vector3& invert_assign();
     Vector3& normalize_assign();
-    Matrix3 skew() const;
+    Vector3& clamp_length(const double max_length);
+    
     double dot(const Vector3& vec) const;
     double euc_distance(Vector3& vec) const;
     double length() const;
+    double len_sqrd() const;
+    bool is_near_zero() const;
     std::string to_string() const;
 
     Vector3 operator+(const Vector3& vec) const {

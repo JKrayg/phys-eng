@@ -2,7 +2,18 @@
 #include <string>
 #include <iostream>
 #include "matrix3.h"
+#include "constants.h"
 
+
+Matrix3 Matrix3::operator-(const Matrix3& m) const {
+	std::array<double, 9> msub = {
+		matrix[0] - m.matrix[0], matrix[1] - m.matrix[1],
+		matrix[2] - m.matrix[2], matrix[3] - m.matrix[3],
+		matrix[4] - m.matrix[4], matrix[5] - m.matrix[5],
+		matrix[6] - m.matrix[6], matrix[7] - m.matrix[7]
+	};
+	return Matrix3(msub);
+}
 
 Vector3 Matrix3::operator*(const Vector3& vec) const {
 	return Vector3(
@@ -29,6 +40,20 @@ Matrix3 Matrix3::operator*(const Matrix3& m) const {
 	return Matrix3(mmul);
 }
 
+Matrix3& Matrix3::operator*=(const Matrix3& m) {
+	matrix[0] = matrix[0] * m.matrix[0] + matrix[1] * m.matrix[3] + matrix[2] * m.matrix[6];
+	matrix[1] = matrix[0] * m.matrix[1] + matrix[1] * m.matrix[4] + matrix[2] * m.matrix[7];
+	matrix[2] = matrix[0] * m.matrix[2] + matrix[1] * m.matrix[5] + matrix[2] * m.matrix[8];
+	matrix[3] = matrix[3] * m.matrix[0] + matrix[4] * m.matrix[3] + matrix[5] * m.matrix[6];
+	matrix[4] = matrix[3] * m.matrix[1] + matrix[4] * m.matrix[4] + matrix[5] * m.matrix[7];
+	matrix[5] = matrix[3] * m.matrix[2] + matrix[4] * m.matrix[5] + matrix[5] * m.matrix[8];
+	matrix[6] = matrix[6] * m.matrix[0] + matrix[7] * m.matrix[3] + matrix[8] * m.matrix[6];
+	matrix[7] = matrix[6] * m.matrix[1] + matrix[7] * m.matrix[4] + matrix[8] * m.matrix[7];
+	matrix[8] = matrix[6] * m.matrix[2] + matrix[7] * m.matrix[5] + matrix[8] * m.matrix[8];
+
+	return *this;
+}
+
 Matrix3 Matrix3::operator/(const double s) const {
 	std::array<double, 9> div = {
 		matrix[0] / s, matrix[1] / s,
@@ -41,6 +66,16 @@ Matrix3 Matrix3::operator/(const double s) const {
 	return Matrix3(div);
 }
 
+Matrix3& Matrix3::operator/=(const double& s) {
+	matrix[0] = matrix[0] / s; matrix[1] = matrix[1] / s;
+	matrix[2] = matrix[2] / s; matrix[3] = matrix[3] / s;
+	matrix[4] = matrix[4] / s; matrix[5] = matrix[5] / s;
+	matrix[6] = matrix[6] / s; matrix[7] = matrix[7] / s;
+	matrix[8] = matrix[8] / s;
+
+	return *this;
+}
+
 Matrix3 Matrix3::transpose() const {
 	std::array<double, 9> tpose = {
 		matrix[0], matrix[3], matrix[6],
@@ -51,28 +86,49 @@ Matrix3 Matrix3::transpose() const {
 }
 
 Matrix3 Matrix3::inverse() const {
-	std::array<double, 9> inv = {
-		(matrix[4] * matrix[8] - matrix[5] * matrix[7]) * (((0 + 0) % 2 == 0) ? 1 : -1),
-		(matrix[3] * matrix[8] - matrix[5] * matrix[6]) * (((0 + 1) % 2 == 0) ? 1 : -1),
-		(matrix[3] * matrix[7] - matrix[4] * matrix[6]) * (((0 + 2) % 2 == 0) ? 1 : -1),
-		(matrix[1] * matrix[8] - matrix[2] * matrix[7]) * (((1 + 0) % 2 == 0) ? 1 : -1),
-		(matrix[0] * matrix[8] - matrix[2] * matrix[6]) * (((1 + 1) % 2 == 0) ? 1 : -1),
-		(matrix[0] * matrix[7] - matrix[1] * matrix[6]) * (((1 + 2) % 2 == 0) ? 1 : -1),
-		(matrix[1] * matrix[5] - matrix[2] * matrix[4]) * (((2 + 0) % 2 == 0) ? 1 : -1),
-		(matrix[0] * matrix[5] - matrix[2] * matrix[3]) * (((2 + 1) % 2 == 0) ? 1 : -1),
-		(matrix[0] * matrix[4] - matrix[1] * matrix[3]) * (((2 + 2) % 2 == 0) ? 1 : -1)
-	};
+	if (std::abs(this->determinant()) > Constants::EPSILON) {
+		std::array<double, 9> inv = {
+			(matrix[4] * matrix[8] - matrix[5] * matrix[7]) * (((0 + 0) % 2 == 0) ? 1 : -1),
+			(matrix[3] * matrix[8] - matrix[5] * matrix[6]) * (((0 + 1) % 2 == 0) ? 1 : -1),
+			(matrix[3] * matrix[7] - matrix[4] * matrix[6]) * (((0 + 2) % 2 == 0) ? 1 : -1),
+			(matrix[1] * matrix[8] - matrix[2] * matrix[7]) * (((1 + 0) % 2 == 0) ? 1 : -1),
+			(matrix[0] * matrix[8] - matrix[2] * matrix[6]) * (((1 + 1) % 2 == 0) ? 1 : -1),
+			(matrix[0] * matrix[7] - matrix[1] * matrix[6]) * (((1 + 2) % 2 == 0) ? 1 : -1),
+			(matrix[1] * matrix[5] - matrix[2] * matrix[4]) * (((2 + 0) % 2 == 0) ? 1 : -1),
+			(matrix[0] * matrix[5] - matrix[2] * matrix[3]) * (((2 + 1) % 2 == 0) ? 1 : -1),
+			(matrix[0] * matrix[4] - matrix[1] * matrix[3]) * (((2 + 2) % 2 == 0) ? 1 : -1)
+		};
 
-	Matrix3 m = Matrix3(inv);
+		Matrix3 m = Matrix3(inv);
 
-	return m.transpose() / this->determinant();
+		return m.transpose() / this->determinant();
+	}
+
+	return this->identity();
+	
 }
 
-Vector3 Matrix3::solve(const Vector3& vec) const
+Matrix3 Matrix3::identity() const {
+	std::array<double, 9> m = { 1, 0 , 0, 0, 1, 0, 0, 0, 1 };
+	return Matrix3(m);
+}
+
+Matrix3 Matrix3::zeros() const {
+	std::array<double, 9> m = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	return Matrix3(m);
+}
+
+Matrix3 Matrix3::diagonal(const double x, const double y, const double z) const
 {
+	std::array<double, 9> m = { x, 0, 0, 0, y, 0, 0, 0, z };
+	return Matrix3(m);
+}
+
+
+Vector3 Matrix3::solve(const Vector3& vec) const {
 	double det = this->determinant();
 
-	if (std::abs(det) < 1e-8) {
+	if (std::abs(det) < Constants::EPSILON) {
 		return Vector3(0, 0, 0);
 	}
 	else {
@@ -94,6 +150,28 @@ double Matrix3::determinant() const {
 	return matrix[0] * (matrix[4] * matrix[8] - matrix[5] * matrix[7]) -
 		matrix[1] * (matrix[3] * matrix[8] - matrix[5] * matrix[6]) +
 		matrix[2] * (matrix[3] * matrix[7] - matrix[4] * matrix[6]);
+}
+
+double Matrix3::trace() const
+{
+	return matrix[0] + matrix[4] + matrix[8];
+}
+
+bool Matrix3::is_invertible() const {
+	if (std::abs(this->determinant()) > Constants::EPSILON) {
+		return true;
+	}
+	return false;
+}
+
+bool Matrix3::is_symmetric() const {
+	Matrix3 sub = *this - this->transpose();
+	if (std::abs(sub.matrix[3]) < Constants::EPSILON &&
+		std::abs(sub.matrix[6]) < Constants::EPSILON &&
+		std::abs(sub.matrix[7]) < Constants::EPSILON) {
+		return true;
+	}
+	return false;
 }
 
 
